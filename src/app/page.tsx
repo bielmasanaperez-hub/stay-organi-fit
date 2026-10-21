@@ -96,15 +96,16 @@ export default function StayOrganiFitApp() {
 
   return (
     <div className="relative min-h-screen text-slate-200 pb-20">
-      {/* FONDO DEPORTIVO SUAVE Y MATE */}
+      {/* FONDO DEPORTIVO FUTURISTA CON SU FLOW ORIGINAL PERO SIN DESLUMBRAR */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 opacity-15 blur-[2px] saturate-[0.35]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 scale-105 opacity-55"
           style={{
             backgroundImage: `url('${activeBgImage}')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141820]/90 via-[#141820]/92 to-[#141820]" />
+        {/* Velo translúcido suave para que se aprecie bien el fondo de piscina/gym/pista sin molestar a la lectura */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080d18]/60 via-[#080d18]/50 to-[#080d18]/85" />
       </div>
 
       {/* CONTENEDOR PRINCIPAL */}

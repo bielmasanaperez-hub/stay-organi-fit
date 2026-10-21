@@ -1,23 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-space",
+  variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  weight: ["400", "500", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "StayOrganiFit · Eurofitness Estació del Nord & OutfitDiario",
+  title: "StayOrganiFit · Eurofitness & OutfitDiario",
   description:
-    "Sistema futurista de entrenamiento por Tempos (08:00-09:10) para Eurofitness Estació del Nord + Básquet Nocturno + Conexión en vivo con OutfitDiario.",
+    "Organizador diario de entrenamientos por tiempos (08:00-09:10) en Eurofitness Estació del Nord conectado con OutfitDiario.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -31,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050811",
+  themeColor: "#11161f",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -44,11 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} dark`}
-    >
-      <body className="font-sans antialiased selection:bg-cyber-cyan/30 selection:text-cyber-cyan min-h-screen">
+    <html lang="es" className={`${inter.variable} dark`}>
+      <body className="font-sans antialiased min-h-screen bg-[#11161f] text-slate-100">
         {children}
       </body>
     </html>

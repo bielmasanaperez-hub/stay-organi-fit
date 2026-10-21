@@ -5,19 +5,10 @@ import {
   Dumbbell,
   Waves,
   Dribbble,
-  Clock,
   MapPin,
-  Flame,
-  Zap,
-  ShowerHead,
-  GraduationCap,
   CheckCircle2,
-  Sparkles,
   Moon,
-  ChevronRight,
-  ShieldAlert,
   Activity,
-  Calendar,
 } from "lucide-react";
 import {
   WEEKLY_EUROFITNESS_PLAN,
@@ -38,7 +29,6 @@ export default function StayOrganiFitApp() {
     Record<string, boolean>
   >({});
 
-  // Set current weekday automatically on mount
   useEffect(() => {
     const todayId = getTodayDayId();
     setSelectedDayId(todayId);
@@ -67,12 +57,13 @@ export default function StayOrganiFitApp() {
       ? "/bg-basket.png"
       : "/bg-gym.png";
 
+  // Colores suaves y agradables a la vista
   const activeAccentColor =
     currentEnvironment === "pool"
-      ? "#00F0FF"
+      ? "#38bdf8" // Azul cielo suave
       : currentEnvironment === "basket"
-      ? "#FF6B00"
-      : "#00FF87";
+      ? "#f59e0b" // Ámbar cálido
+      : "#34d399"; // Verde menta/esmeralda suave
 
   const handleSelectDay = (dayId: DayId) => {
     setSelectedDayId(dayId);
@@ -104,72 +95,66 @@ export default function StayOrganiFitApp() {
 
   return (
     <div className="relative min-h-screen text-slate-100 pb-20">
-      {/* DYNAMIC FUTURISTIC BACKGROUND LAYER (GYM / POOL / BASKET COURT) */}
+      {/* FONDO DEPORTIVO SUAVE Y CÓMODO A LA VISTA */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 opacity-20 blur-[2px] saturate-50"
           style={{
             backgroundImage: `url('${activeBgImage}')`,
           }}
         />
-        {/* Layered gradients so background sports scene shines through while keeping HUD text razor sharp */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050811]/75 via-[#050811]/65 to-[#050811]/95" />
-        <div className="absolute inset-0 cyber-grid-overlay opacity-70" />
-        <div
-          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] h-[260px] rounded-full blur-[130px] opacity-30 transition-all duration-700"
-          style={{ backgroundColor: activeAccentColor }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#11161f]/85 via-[#11161f]/90 to-[#11161f]" />
       </div>
 
-      {/* MAIN HUD CONTAINER */}
-      <div className="relative z-10 max-w-6xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 space-y-5">
-        {/* 1. TOP FUTURISTIC NAVBAR & EUROFITNESS ESTACIÓ DEL NORD BADGE */}
-        <header className="cyber-glass rounded-2xl border border-slate-800/90 p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-2xl">
-          <div className="flex items-start sm:items-center gap-3.5">
+      {/* CONTENEDOR PRINCIPAL */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-7 space-y-5">
+        {/* 1. CABECERA LIMPIA */}
+        <header className="clean-card rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-md">
+          <div className="flex items-center gap-3.5">
             <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center border shrink-0 shadow-lg"
+              className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
               style={{
-                borderColor: `${activeAccentColor}70`,
-                background: `linear-gradient(135deg, ${activeAccentColor}25, rgba(5,8,17,0.9))`,
+                backgroundColor: `${activeAccentColor}20`,
                 color: activeAccentColor,
               }}
             >
               {currentEnvironment === "pool" ? (
-                <Waves className="w-6 h-6" />
+                <Waves className="w-5 h-5" />
               ) : currentEnvironment === "basket" ? (
-                <Dribbble className="w-6 h-6" />
+                <Dribbble className="w-5 h-5" />
               ) : (
-                <Dumbbell className="w-6 h-6" />
+                <Dumbbell className="w-5 h-5" />
               )}
             </div>
 
             <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-cyber-cyan font-bold">
-                  STAYORGANIFIT · HUD v2.0
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                <span className="font-semibold text-slate-200">
+                  StayOrganiFit
                 </span>
-                <span className="font-mono text-[11px] text-slate-300 flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-cyber-emerald" />
+                <span>·</span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
                   {EUROFITNESS_INFO.name}
                 </span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
-                Planificador de Tempos (08:00–09:10) & OutfitDiario Sync
+              <h1 className="text-lg sm:text-xl font-bold text-white mt-0.5">
+                Horario Deportivo (08:00–09:10) y OutfitDiario
               </h1>
             </div>
           </div>
 
-          {/* Environment Mode Switcher (Por si hoy quieres cambiar entre Gym, Piscina o Pista) */}
+          {/* Selector de instalación */}
           <div className="flex flex-col sm:items-end gap-1.5">
-            <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
-              Instalación Activa (Cambia fondo y Outfit Extra):
+            <span className="text-xs text-slate-400">
+              Instalación de hoy:
             </span>
-            <div className="inline-flex rounded-xl bg-slate-950/90 p-1 border border-slate-800 gap-1">
+            <div className="inline-flex rounded-xl bg-slate-900/90 p-1 border border-slate-800 gap-1">
               <button
                 onClick={() => setEnvOverride("gym")}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-1.5 transition ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "gym"
-                    ? "bg-cyber-emerald text-slate-950 font-bold shadow"
+                    ? "bg-emerald-500 text-slate-950 font-semibold"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -178,9 +163,9 @@ export default function StayOrganiFitApp() {
               </button>
               <button
                 onClick={() => setEnvOverride("pool")}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-1.5 transition ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "pool"
-                    ? "bg-cyber-cyan text-slate-950 font-bold shadow"
+                    ? "bg-sky-400 text-slate-950 font-semibold"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -189,9 +174,9 @@ export default function StayOrganiFitApp() {
               </button>
               <button
                 onClick={() => setEnvOverride("basket")}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-1.5 transition ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "basket"
-                    ? "bg-cyber-orange text-slate-950 font-bold shadow"
+                    ? "bg-amber-500 text-slate-950 font-semibold"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -202,41 +187,37 @@ export default function StayOrganiFitApp() {
           </div>
         </header>
 
-        {/* 2. SELECTOR DE DÍAS: LUNES A VIERNES (CON ALERTAS DE BÁSQUET NOCTURNO MIÉRCOLES Y VIERNES) */}
-        <section className="grid grid-cols-5 gap-2 sm:gap-3">
+        {/* 2. SELECTOR DE DÍAS (LUNES A VIERNES) */}
+        <section className="grid grid-cols-5 gap-2 sm:gap-2.5">
           {ORDERED_DAYS.map((dId) => {
             const d = WEEKLY_EUROFITNESS_PLAN[dId];
             const isSelected = dId === selectedDayId;
             const isToday = dId === getTodayDayId();
 
+            const dayColor =
+              d.environment === "pool"
+                ? "#38bdf8"
+                : d.environment === "basket"
+                ? "#f59e0b"
+                : "#34d399";
+
             return (
               <button
                 key={d.id}
                 onClick={() => handleSelectDay(d.id)}
-                className={`rounded-2xl p-2.5 sm:p-3.5 border text-left transition-all relative overflow-hidden ${
+                className={`rounded-xl p-2.5 sm:p-3.5 border text-left transition-all ${
                   isSelected
-                    ? "cyber-glass scale-[1.02] shadow-xl"
-                    : "bg-slate-950/75 border-slate-800/80 opacity-80 hover:opacity-100"
+                    ? "bg-slate-800/95 border-slate-500 shadow-md"
+                    : "bg-slate-900/60 border-slate-800/80 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
                 }`}
-                style={
-                  isSelected
-                    ? {
-                        borderColor: d.themeAccent.primary,
-                        boxShadow: `0 0 24px -6px ${d.themeAccent.glow}`,
-                      }
-                    : undefined
-                }
               >
                 <div className="flex items-center justify-between gap-1">
-                  <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">
-                    {d.shortName}
+                  <span className="text-xs font-semibold text-slate-200">
+                    {d.dayName}
                   </span>
                   {isToday && (
-                    <span
-                      className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold text-slate-950"
-                      style={{ backgroundColor: d.themeAccent.primary }}
-                    >
-                      HOY
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-700 text-white">
+                      Hoy
                     </span>
                   )}
                 </div>
@@ -245,40 +226,35 @@ export default function StayOrganiFitApp() {
                   {d.environment === "pool" ? (
                     <Waves
                       className="w-4 h-4 shrink-0"
-                      style={{ color: d.themeAccent.primary }}
+                      style={{ color: dayColor }}
                     />
                   ) : d.environment === "basket" ? (
                     <Dribbble
                       className="w-4 h-4 shrink-0"
-                      style={{ color: d.themeAccent.primary }}
+                      style={{ color: dayColor }}
                     />
                   ) : (
                     <Dumbbell
                       className="w-4 h-4 shrink-0"
-                      style={{ color: d.themeAccent.primary }}
+                      style={{ color: dayColor }}
                     />
                   )}
-                  <span className="text-xs sm:text-sm font-bold text-white truncate">
+                  <span className="text-xs sm:text-sm font-semibold text-white truncate">
                     {d.environment === "pool"
                       ? "Piscina"
                       : d.environment === "basket"
-                      ? "Pista+Gym"
-                      : "Gym Fuerza"}
+                      ? "Pista + Gym"
+                      : "Gym"}
                   </span>
                 </div>
 
-                <p className="hidden sm:block text-[11px] text-slate-400 mt-1 line-clamp-1">
-                  {d.headline}
-                </p>
-
-                {/* Night Basketball Indicator for Wednesday & Friday */}
                 {d.nightBasket.active && (
-                  <div className="mt-1.5 pt-1.5 border-t border-slate-800/90 flex items-center gap-1 text-[9px] sm:text-[10px] font-mono text-cyber-orange font-semibold truncate">
+                  <div className="mt-1.5 pt-1.5 border-t border-slate-700/60 flex items-center gap-1 text-[10px] text-amber-400 truncate">
                     <Moon className="w-3 h-3 shrink-0" />
                     <span className="truncate">
                       {d.id === "miercoles"
-                        ? "Noche: 40m Físico + 1h15 Básquet"
-                        : "Noche: 1h15 Básquet"}
+                        ? "Noche: Físico + Básquet"
+                        : "Noche: Básquet"}
                     </span>
                   </div>
                 )}
@@ -287,29 +263,23 @@ export default function StayOrganiFitApp() {
           })}
         </section>
 
-        {/* 3. HERO DEL DÍA ACTUAL + CONDICIONANTE DE BÁSQUET NOCTURNO */}
-        <section
-          className="cyber-glass rounded-2xl border p-5 relative overflow-hidden"
-          style={{ borderColor: `${activeAccentColor}50` }}
-        >
+        {/* 3. RESUMEN DEL DÍA Y ENTRENO DE BÁSQUET POR LA NOCHE */}
+        <section className="clean-card rounded-2xl p-5 shadow-md">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
             <div className="lg:col-span-8 space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 text-xs">
                 <span
-                  className="px-2.5 py-1 rounded-md font-mono text-xs font-bold uppercase text-slate-950"
+                  className="px-2.5 py-1 rounded-lg font-semibold text-slate-950"
                   style={{ backgroundColor: activeAccentColor }}
                 >
-                  {dayPlan.dayName} · 08:00 – 09:00H (+ DUCHA 09:00–09:10H)
+                  {dayPlan.dayName} · 08:00 a 09:00h (Ducha 09:00–09:10h)
                 </span>
-                <span className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700 font-mono text-xs text-slate-200">
-                  📍 {dayPlan.facilityZone}
-                </span>
-                <span className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700 font-mono text-xs text-cyber-cyan">
-                  Carga SNC: {dayPlan.cnsLoad}
+                <span className="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">
+                  {dayPlan.facilityZone}
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+              <h2 className="text-lg sm:text-xl font-bold text-white">
                 {dayPlan.headline}
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -317,34 +287,27 @@ export default function StayOrganiFitApp() {
               </p>
             </div>
 
-            {/* Right Stats + Night Basket Alert Box */}
-            <div className="lg:col-span-4 flex flex-col gap-2.5">
+            <div className="lg:col-span-4">
               <div
                 className={`p-3.5 rounded-xl border ${
                   dayPlan.nightBasket.active
-                    ? "bg-orange-950/40 border-cyber-orange/60"
-                    : "bg-slate-950/80 border-slate-800"
+                    ? "bg-amber-950/25 border-amber-500/40"
+                    : "bg-slate-900/70 border-slate-800"
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-cyber-orange flex items-center gap-1.5">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold text-amber-400 flex items-center gap-1.5">
                     <Moon className="w-3.5 h-3.5" />
-                    CONDICIONANTE EQUIPO BÁSQUET (NOCHE)
+                    Equipo de Básquet (Noche)
                   </span>
-                  <span
-                    className={`px-2 py-0.5 rounded font-mono text-[10px] font-bold ${
-                      dayPlan.nightBasket.active
-                        ? "bg-cyber-orange text-slate-950"
-                        : "bg-slate-800 text-slate-300"
-                    }`}
-                  >
-                    CARGA {dayPlan.nightBasket.loadLevel}
+                  <span className="text-slate-400">
+                    Carga {dayPlan.nightBasket.loadLevel.toLowerCase()}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-bold text-white mt-1">
+                <p className="text-xs sm:text-sm font-semibold text-white mt-1">
                   {dayPlan.nightBasket.title}
                 </p>
-                <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                   {dayPlan.nightBasket.coachNote}
                 </p>
               </div>
@@ -352,7 +315,7 @@ export default function StayOrganiFitApp() {
           </div>
         </section>
 
-        {/* 4. CRONÓMETRO INTERACTIVO DE TEMPOS (08:00 - 09:00 ENTRENO | 09:00 - 09:10 DUCHA | 09:30 UNI) */}
+        {/* 4. CRONÓMETRO DE TEMPOS */}
         <TempoChronometer
           tempos={dayPlan.tempos}
           activeTempoId={activeTempoId}
@@ -360,74 +323,60 @@ export default function StayOrganiFitApp() {
           accentColor={activeAccentColor}
         />
 
-        {/* 5. DESGLOSE DE EJERCICIOS POR TEMPOS CON CHECKLIST EN TIEMPO REAL */}
-        <section className="space-y-4">
+        {/* 5. BLOQUES DE EJERCICIOS POR TIEMPOS */}
+        <section className="space-y-3.5">
           <div className="flex flex-wrap items-center justify-between gap-2 px-1">
             <div className="flex items-center gap-2">
               <Activity
                 className="w-5 h-5"
                 style={{ color: activeAccentColor }}
               />
-              <h2 className="text-base sm:text-lg font-bold text-white uppercase tracking-wide font-mono">
-                Hoja de Ruta por Tempos · {dayPlan.dayName} (08:00 a 09:10h)
+              <h2 className="text-base sm:text-lg font-bold text-white">
+                Entrenamiento por Tempos · {dayPlan.dayName}
               </h2>
             </div>
-            <div className="flex items-center gap-2 font-mono text-xs">
-              <span className="text-slate-400">Progreso de hoy:</span>
-              <span
-                className="px-2.5 py-0.5 rounded-full font-bold text-slate-950"
-                style={{ backgroundColor: activeAccentColor }}
-              >
-                {doneExercisesCount}/{allDayExercises.length} bloques (
-                {workoutProgressPct}%)
-              </span>
-            </div>
+            <span className="text-xs text-slate-300 bg-slate-800/90 border border-slate-700 px-3 py-1 rounded-full">
+              Completado: {doneExercisesCount}/{allDayExercises.length} (
+              {workoutProgressPct}%)
+            </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {dayPlan.tempos.map((tempo) => {
+            {dayPlan.tempos.map((tempo, idx) => {
               const isSelectedTempo = tempo.id === activeTempoId;
-              const isShowerTempo = tempo.phaseType === "shower";
+              const isShower = tempo.phaseType === "shower";
 
               return (
                 <div
                   key={tempo.id}
                   onClick={() => setActiveTempoId(tempo.id)}
-                  className={`cyber-glass rounded-2xl border p-4 sm:p-5 transition cursor-pointer ${
+                  className={`clean-card rounded-2xl p-4 sm:p-5 transition cursor-pointer ${
                     isSelectedTempo
-                      ? "ring-1"
-                      : "border-slate-800/90 hover:border-slate-700"
+                      ? "ring-1 ring-slate-500"
+                      : "hover:border-slate-700"
                   }`}
-                  style={
-                    isSelectedTempo
-                      ? {
-                          borderColor: tempo.accentColor,
-                          boxShadow: `0 0 25px -8px ${tempo.accentColor}50`,
-                        }
-                      : undefined
-                  }
                 >
-                  <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800/80">
+                  <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-700/60">
                     <div className="flex items-center gap-2">
                       <span
-                        className="px-2.5 py-1 rounded-lg font-mono text-xs font-bold text-slate-950"
-                        style={{ backgroundColor: tempo.accentColor }}
+                        className="px-2.5 py-0.5 rounded-md text-xs font-semibold text-slate-950"
+                        style={{ backgroundColor: activeAccentColor }}
                       >
-                        {tempo.tempoNumber}
+                        {isShower ? "Ducha" : `Tempo ${idx + 1}`}
                       </span>
-                      <span className="font-mono text-xs font-bold text-white">
+                      <span className="text-xs sm:text-sm font-semibold text-white">
                         {tempo.startTime} – {tempo.endTime}
                       </span>
                     </div>
-                    <span className="font-mono text-xs text-slate-400">
-                      ⏱ {tempo.durationMinutes} min exactos
+                    <span className="text-xs text-slate-400">
+                      {tempo.durationMinutes} min
                     </span>
                   </div>
 
-                  <h3 className="text-sm sm:text-base font-bold text-white">
+                  <h3 className="text-sm sm:text-base font-semibold text-white">
                     {tempo.title}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5 mb-3">
+                  <p className="text-xs text-slate-300 mt-0.5 mb-3">
                     {tempo.description}
                   </p>
 
@@ -443,15 +392,15 @@ export default function StayOrganiFitApp() {
                           }}
                           className={`p-3 rounded-xl border transition flex items-start gap-3 ${
                             isDone
-                              ? "bg-emerald-950/25 border-emerald-500/40"
-                              : "bg-slate-950/85 border-slate-800/90 hover:border-slate-700"
+                              ? "bg-slate-800/40 border-slate-700/50"
+                              : "bg-slate-900/70 border-slate-800 hover:border-slate-700"
                           }`}
                         >
                           <div
                             className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
                               isDone
-                                ? "bg-cyber-emerald border-cyber-emerald text-slate-950"
-                                : "border-slate-600 bg-slate-900"
+                                ? "bg-emerald-500 border-emerald-500 text-slate-950"
+                                : "border-slate-600 bg-slate-800"
                             }`}
                           >
                             {isDone && (
@@ -462,7 +411,7 @@ export default function StayOrganiFitApp() {
                           <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center justify-between gap-1">
                               <span
-                                className={`text-xs sm:text-sm font-bold ${
+                                className={`text-xs sm:text-sm font-semibold ${
                                   isDone
                                     ? "line-through text-slate-400"
                                     : "text-white"
@@ -470,22 +419,22 @@ export default function StayOrganiFitApp() {
                               >
                                 {ex.name}
                               </span>
-                              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-cyber-cyan">
+                              <span className="text-xs text-slate-400">
                                 {ex.durationMinutes} min
                               </span>
                             </div>
 
-                            <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px] font-mono text-slate-300">
-                              <span>📊 {ex.setsAndReps}</span>
+                            <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-300">
+                              <span>{ex.setsAndReps}</span>
                               {ex.restSeconds > 0 && (
-                                <span className="text-cyber-orange">
+                                <span className="text-slate-400">
                                   · Descanso: {ex.restSeconds}s
                                 </span>
                               )}
                             </div>
 
-                            <p className="text-[11px] text-slate-400 mt-1">
-                              💡 {ex.tip}
+                            <p className="text-xs text-slate-400 mt-1">
+                              {ex.tip}
                             </p>
                           </div>
                         </div>
@@ -498,7 +447,7 @@ export default function StayOrganiFitApp() {
           </div>
         </section>
 
-        {/* 6. CONEXIÓN EN VIVO CON OUTFITDIARIO (OUTFIT EXTRA DEPORTIVO + DUCHA 9:00-9:10 + BÁSQUET NOCHE) */}
+        {/* 6. CONEXIÓN CON OUTFITDIARIO */}
         <OutfitDiarioBridge
           dayPlan={dayPlan}
           activeEnvironment={currentEnvironment}

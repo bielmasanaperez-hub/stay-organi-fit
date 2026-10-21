@@ -2,5 +2,5 @@
 title StayOrganiFit - Eurofitness Estacio del Nord & OutfitDiario
 cd /d "%~dp0"
 start "" "http://localhost:3001"
-npm run dev
+npx next start -p 3001
 pause

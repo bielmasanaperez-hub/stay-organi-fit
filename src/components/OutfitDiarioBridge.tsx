@@ -21,13 +21,12 @@ import { DayPlan, EnvironmentMode } from "@/lib/eurofitness-plan";
 interface OutfitDiarioBridgeProps {
   dayPlan: DayPlan;
   activeEnvironment: EnvironmentMode;
-  accentColor: string;
+  accentColor?: string;
 }
 
 export default function OutfitDiarioBridge({
   dayPlan,
   activeEnvironment,
-  accentColor,
 }: OutfitDiarioBridgeProps) {
   const [outfitDiarioUrl, setOutfitDiarioUrl] = useState<string>(
     "http://localhost:3000"
@@ -132,7 +131,7 @@ export default function OutfitDiarioBridge({
       }
     } catch {
       setWashFeedback(
-        "Entreno completado y registrado. Listo para la ducha de 09:00 a 09:10h."
+        "Sesión registrada. Tu equipación deportiva ha quedado marcada como completada."
       );
     } finally {
       setConfirmingWash(false);
@@ -148,60 +147,56 @@ export default function OutfitDiarioBridge({
   const isConnectedLive = Boolean(syncData?.connectedLive);
 
   return (
-    <div className="clean-card rounded-2xl p-5 sm:p-6">
-      {/* Cabecera */}
-      <div className="flex flex-wrap items-start justify-between gap-3 pb-4 border-b border-slate-700/60">
-        <div className="flex items-start gap-3.5">
-          <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-slate-100 border border-white/10"
-            style={{
-              backgroundColor: accentColor,
-            }}
-          >
-            <Shirt className="w-5 h-5" />
+    <section className="luxury-panel rounded-2xl p-6 sm:p-8 shadow-2xl">
+      {/* Header: Private Locker Room & OutfitDiario Concierge */}
+      <div className="flex flex-wrap items-start justify-between gap-4 pb-6 border-b border-club-gold/15">
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-xl bg-club-obsidian border border-club-gold/35 flex items-center justify-center text-club-gold shrink-0">
+            <Shirt className="w-5 h-5 stroke-[1.5]" />
           </div>
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 flex items-center gap-1.5">
-                <Link2 className="w-3.5 h-3.5 text-slate-400" />
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-club-gold font-semibold flex items-center gap-1.5">
+                <Link2 className="w-3.5 h-3.5" />
                 {isConnectedLive
-                  ? "Conectado en vivo con OutfitDiario"
-                  : "Sincronizado con OutfitDiario"}
+                  ? "VESTUARIO & CONCIERGE · OUTFITDIARIO EN VIVO"
+                  : "VESTUARIO & CONCIERGE · SINCRONIZADO CON OUTFITDIARIO"}
               </span>
             </div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-100 mt-1.5">
+            <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-club-ivory mt-1">
               {dayPlan.extraOutfitPack.packName}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+            <p className="text-xs sm:text-sm text-club-stone mt-1 max-w-2xl leading-relaxed">
               {dayPlan.extraOutfitPack.summary}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={() => setShowUrlConfig(!showUrlConfig)}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs transition"
-            title="Configurar enlace de OutfitDiario"
+            className="p-2.5 rounded-xl bg-club-obsidian hover:bg-club-elevated border border-white/10 text-club-stone hover:text-club-ivory transition"
+            title="Configurar conexión con OutfitDiario"
           >
             <Settings2 className="w-4 h-4" />
           </button>
           <button
             onClick={handleRotateSportKit}
             disabled={loading}
-            className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition"
+            className="px-4 py-2.5 rounded-xl bg-club-obsidian hover:bg-club-elevated border border-club-gold/25 text-xs uppercase tracking-[0.14em] font-medium text-club-ivory flex items-center gap-2 transition"
           >
             <RefreshCw
-              className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`}
+              className={`w-3.5 h-3.5 text-club-gold ${
+                loading ? "animate-spin" : ""
+              }`}
             />
-            <span>Cambiar ropa deportiva</span>
+            <span>Rotar Equipación</span>
           </button>
           <a
             href={outfitDiarioUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-100 flex items-center gap-1.5 transition hover:opacity-90 border border-white/10"
-            style={{ backgroundColor: accentColor }}
+            className="px-5 py-2.5 rounded-xl bg-club-gold hover:bg-club-goldLight text-club-obsidian text-xs uppercase tracking-[0.16em] font-semibold flex items-center gap-2 transition shadow-md"
           >
             <span>Abrir OutfitDiario</span>
             <ExternalLink className="w-3.5 h-3.5" />
@@ -210,9 +205,9 @@ export default function OutfitDiarioBridge({
       </div>
 
       {showUrlConfig && (
-        <div className="mt-3 p-3 rounded-xl bg-slate-900 border border-slate-700 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-          <span className="text-xs text-slate-300 shrink-0">
-            URL de OutfitDiario:
+        <div className="mt-4 p-4 rounded-xl bg-club-obsidian border border-club-gold/25 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <span className="text-xs uppercase tracking-wider text-club-stone shrink-0">
+            Enlace OutfitDiario:
           </span>
           <input
             type="text"
@@ -227,230 +222,246 @@ export default function OutfitDiarioBridge({
               }
             }}
             placeholder="https://outfit-diario.vercel.app o http://localhost:3000"
-            className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none"
+            className="flex-1 bg-club-surface border border-white/10 rounded-lg px-3.5 py-2 text-xs text-club-ivory focus:outline-none focus:border-club-gold"
           />
           <button
             onClick={() => fetchOutfitDiarioSync(variant, outfitDiarioUrl)}
-            className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-100 text-xs font-medium"
+            className="px-4 py-2 rounded-lg bg-club-gold text-club-obsidian text-xs uppercase tracking-widest font-semibold"
           >
-            Guardar
+            Conectar
           </button>
         </div>
       )}
 
-      {/* 1. OUTFIT DEPORTIVO MAÑANA (08:00 - 09:00) */}
-      <div className="mt-5">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-slate-200">
-            1. Ropa y equipo para las 08:00h en Eurofitness
-          </h3>
-          <span className="text-xs text-slate-400">
-            {activeEnvironment === "pool"
-              ? "Piscina 25m"
-              : activeEnvironment === "basket"
-              ? "Pista Básquet + Sala"
-              : "Sala Fitness Gym"}
+      {/* I. OUTFIT DEPORTIVO MATUTINO (08:00 - 09:00) */}
+      <div className="mt-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-club-gold font-semibold block">
+              SECCIÓN I · EQUIPACIÓN DEPORTIVA MATUTINA (08:00 – 09:00H)
+            </span>
+            <h3 className="font-serif text-xl font-semibold text-club-ivory mt-0.5">
+              Selección de Prendas Limpias para Eurofitness Estació del Nord
+            </h3>
+          </div>
+          <span className="text-xs uppercase tracking-[0.16em] text-club-stone">
+            Espacio:{" "}
+            <strong className="text-club-ivory">
+              {activeEnvironment === "pool"
+                ? "Piscina Climatizada 25m"
+                : activeEnvironment === "basket"
+                ? "Pista Parquet & Sala"
+                : "Sala Fitness & Fuerza"}
+            </strong>
           </span>
         </div>
 
         {activeEnvironment === "pool" && morningKit?.poolKit ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Bañador</span>
-                <Waves className="w-4 h-4 text-slate-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span> I · Bañador</span>
+                <Waves className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1">
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5">
                 {morningKit.poolKit.swimsuit}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                Llevar puesto desde casa para ganar tiempo
+              <span className="text-xs text-club-stone block mt-1 leading-relaxed">
+                Llevar puesto desde casa (07:45h) para entrar al agua a las 08:00h en punto.
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Gorro y Gafas</span>
-                <Waves className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>II · Gorro & Gafas</span>
+                <Waves className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1">
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5">
                 {morningKit.poolKit.capAndGoggles}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                Obligatorios en la piscina del club
+              <span className="text-xs text-club-stone block mt-1 leading-relaxed">
+                Equipamiento reglamentario para los carriles de 25m del club.
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Calzado de agua</span>
-                <ShowerHead className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>III · Calzado Agua</span>
+                <ShowerHead className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1">
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5">
                 {morningKit.poolKit.flipFlops}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                Para piscina y ducha de 09:00 a 09:10h
+              <span className="text-xs text-club-stone block mt-1 leading-relaxed">
+                Imprescindibles en zona de aguas y vestuario (09:00–09:10h).
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Abrigo y Toalla</span>
-                <Shirt className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>IV · Exterior & Toalla</span>
+                <Shirt className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1">
-                {morningKit.warmupLayer?.name || "Sudadera cómoda"}
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5">
+                {morningKit.warmupLayer?.name || "Sudadera Club"}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
+              <span className="text-xs text-club-stone block mt-1 leading-relaxed">
                 + {morningKit.poolKit.towel}
               </span>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Camiseta de entreno</span>
-                <Shirt className="w-4 h-4 text-slate-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>I · Prenda Superior</span>
+                <Shirt className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
-                {morningKit?.top?.name || "Camiseta técnica deportiva"}
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5 truncate">
+                {morningKit?.top?.name || "Camiseta Técnica Club"}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                Color: {morningKit?.top?.color || "Negro"} · Limpia
+              <span className="text-xs text-club-stone block mt-1">
+                Tono: {morningKit?.top?.color || "Negro"} · Disponible en Armario
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Pantalón corto</span>
-                <Dumbbell className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>II · Prenda Inferior</span>
+                <Dumbbell className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
-                {morningKit?.bottom?.name || "Pantalón corto deportivo"}
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5 truncate">
+                {morningKit?.bottom?.name || "Pantalón Corto Training"}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                Color: {morningKit?.bottom?.color || "Negro"}
+              <span className="text-xs text-club-stone block mt-1">
+                Tono: {morningKit?.bottom?.color || "Negro"} · Corte Atlético
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Calzado deportivo</span>
-                <Dribbble className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>III · Calzado Técnico</span>
+                <Dribbble className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5 truncate">
                 {morningKit?.shoes?.name ||
                   (activeEnvironment === "basket"
-                    ? "Bambas de Básquet"
-                    : "Zapatillas de Gym")}
+                    ? "Zapatillas Cancha Indoor"
+                    : "Zapatillas Suela Plana")}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
+              <span className="text-xs text-club-stone block mt-1">
                 {activeEnvironment === "basket"
-                  ? "Suela interior para pista"
-                  : "Suela estable para gimnasio"}
+                  ? "Tracción para parqué interior"
+                  : "Estabilidad en peso libre y salto"}
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Sudadera y Ducha</span>
-                <ShowerHead className="w-4 h-4 text-slate-400" />
+            <div className="luxury-subcard rounded-xl p-4 border-l-2 border-l-club-gold">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                <span>IV · Abrigo 07:45h & Ducha</span>
+                <ShowerHead className="w-3.5 h-3.5" />
               </div>
-              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
-                {morningKit?.warmupLayer?.name || "Sudadera de mañana"}
+              <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5 truncate">
+                {morningKit?.warmupLayer?.name || "Sudadera Calentamiento"}
               </p>
-              <span className="text-xs text-slate-400 block mt-1">
-                + Toalla de mano y kit de ducha (09:00h)
+              <span className="text-xs text-club-stone block mt-1">
+                + Toalla de sala y neceser de vestuario
               </span>
             </div>
           </div>
         )}
       </div>
 
-      {/* 2. EQUIPACIÓN EXTRA NOCHE (MIÉRCOLES Y VIERNES) */}
+      {/* II. SEGUNDA EQUIPACIÓN NOCTURNA (MIÉRCOLES Y VIERNES) */}
       {nightKit && (
-        <div className="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700/80">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-            <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-              <Moon className="w-4 h-4 text-slate-400" />
-              2. Equipación para esta noche · {nightKit.sessionTitle}
+        <div className="mt-6 p-5 rounded-xl bg-club-obsidian/90 border border-club-gold/30">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-club-gold font-semibold flex items-center gap-2">
+              <Moon className="w-4 h-4" />
+              SECCIÓN II · EQUIPACIÓN RESERVADA PARA ESTA NOCHE ({nightKit.sessionTitle})
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
-              Segundo conjunto limpio
+            <span className="px-3 py-1 rounded-full bg-club-gold/15 text-club-goldLight text-[10px] uppercase tracking-widest font-semibold">
+              Segundo Conjunto Limpio
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
-              <span className="text-slate-400 block">Camiseta noche</span>
-              <strong className="text-slate-100 block mt-0.5 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="p-3.5 rounded-lg bg-club-surface border border-white/5">
+              <span className="text-[10px] uppercase tracking-wider text-club-stone block">
+                Prenda Superior Noche
+              </span>
+              <strong className="font-serif text-base text-club-ivory block mt-1">
                 {nightKit.top?.name}
               </strong>
             </div>
-            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
-              <span className="text-slate-400 block">Pantalón corto noche</span>
-              <strong className="text-slate-100 block mt-0.5 text-sm">
+            <div className="p-3.5 rounded-lg bg-club-surface border border-white/5">
+              <span className="text-[10px] uppercase tracking-wider text-club-stone block">
+                Prenda Inferior Noche
+              </span>
+              <strong className="font-serif text-base text-club-ivory block mt-1">
                 {nightKit.bottom?.name}
               </strong>
             </div>
-            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
-              <span className="text-slate-400 block">Calzado y accesorios</span>
-              <strong className="text-slate-200 block mt-0.5 text-sm">
+            <div className="p-3.5 rounded-lg bg-club-surface border border-white/5">
+              <span className="text-[10px] uppercase tracking-wider text-club-stone block">
+                Calzado & Especificaciones
+              </span>
+              <strong className="font-serif text-base text-club-goldLight block mt-1">
                 {dayPlan.id === "miercoles"
-                  ? "Zapatillas físico (40m) + Bambas pista (1h15)"
-                  : "Bambas de pista (1h15) + Agua 1.5L"}
+                  ? "Calzado Físico (40m) + Bambas Pista (1h15)"
+                  : "Bambas de Pista (1h15) + Hidratación 1.5L"}
               </strong>
             </div>
           </div>
         </div>
       )}
 
-      {/* 3. CHECKLIST DE MOCHILA Y DUCHA */}
-      <div className="mt-5 pt-4 border-t border-slate-700/60">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2">
-            <Backpack className="w-4 h-4 text-slate-400" />
-            <span className="text-sm font-semibold text-slate-100">
-              Checklist de mochila y ducha (09:00 – 09:10h)
+      {/* III. CHECKLIST DE VESTUARIO (09:00 - 09:10H) Y ENVÍO A COLADA */}
+      <div className="mt-6 pt-6 border-t border-club-gold/15">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div className="flex items-center gap-2.5">
+            <Backpack className="w-4 h-4 text-club-gold" />
+            <span className="text-xs uppercase tracking-[0.18em] font-semibold text-club-ivory">
+              Verificación de Bolsa de Club & Ducha Express (09:00 – 09:10h)
             </span>
           </div>
-          <span className="text-xs text-slate-400 font-medium">
-            {completedCount} de {packItems.length} preparados ({progressBagPct}%)
+          <span className="font-mono text-xs text-club-gold">
+            {completedCount} / {packItems.length} LISTOS ({progressBagPct}%)
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           {packItems.map((item) => {
             const isChecked = Boolean(checkedItems[item.id]);
             return (
               <button
                 key={item.id}
                 onClick={() => toggleChecklistItem(item.id)}
-                className={`p-3 rounded-xl border text-left flex items-start gap-3 transition ${
+                className={`p-3.5 rounded-xl border text-left flex items-start gap-3.5 transition ${
                   isChecked
-                    ? "bg-slate-800/35 border-slate-700/40 text-slate-400"
-                    : "bg-slate-900/60 border-slate-800 hover:border-slate-700 text-slate-100"
+                    ? "bg-club-obsidian/50 border-club-gold/20 text-club-muted"
+                    : "luxury-subcard hover:border-club-gold/30 text-club-ivory"
                 }`}
               >
                 <div
-                  className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
+                  className={`w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5 border transition ${
                     isChecked
-                      ? "bg-[#3d6b58] border-[#3d6b58] text-slate-100"
-                      : "border-slate-600 bg-slate-800"
+                      ? "bg-club-gold border-club-gold text-club-obsidian"
+                      : "border-club-stone/40 bg-club-obsidian"
                   }`}
                 >
-                  {isChecked && <Check className="w-3.5 h-3.5 stroke-[2.2]" />}
+                  {isChecked && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div
                     className={`text-xs sm:text-sm font-medium ${
-                      isChecked ? "line-through text-slate-500" : "text-slate-100"
+                      isChecked
+                        ? "line-through text-club-muted"
+                        : "text-club-ivory"
                     }`}
                   >
                     {item.name}
                   </div>
-                  <div className="text-xs text-slate-400 mt-0.5">
+                  <div className="text-xs text-club-stone mt-0.5">
                     {item.reason}
                   </div>
                 </div>
@@ -459,40 +470,39 @@ export default function OutfitDiarioBridge({
           })}
         </div>
 
-        {/* Confirmar entreno y mandar ropa a lavar */}
-        <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/75 border border-slate-800 rounded-xl p-3.5">
-          <div className="text-xs sm:text-sm text-slate-300">
-            <strong className="text-slate-100 block">
-              ¿Has terminado el entreno de hoy?
-            </strong>
-            <span>
-              Marca como lavando (5 días) la ropa deportiva usada hoy en{" "}
-              <strong className="text-slate-200">OutfitDiario</strong>.
+        {/* Confirmar sesión y enviar a lavado en OutfitDiario */}
+        <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-club-obsidian border border-club-gold/25 rounded-xl p-4 sm:p-5">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-club-gold font-semibold block">
+              CIERRE DE SESIÓN MATUTINA (09:00H)
             </span>
+            <p className="text-xs sm:text-sm text-club-stone mt-1">
+              Al finalizar tu entrenamiento, registra la sesión para enviar automáticamente las prendas deportivas usadas al ciclo de colada (5 días) en{" "}
+              <strong className="text-club-ivory">OutfitDiario</strong>.
+            </p>
           </div>
 
           <button
             onClick={handleConfirmWorkoutAndWash}
             disabled={confirmingWash}
-            className="px-4 py-2.5 rounded-xl text-slate-100 text-xs font-medium shrink-0 flex items-center justify-center gap-2 transition hover:opacity-90 border border-white/10"
-            style={{ backgroundColor: accentColor }}
+            className="px-6 py-3 rounded-xl bg-club-gold hover:bg-club-goldLight text-club-obsidian text-xs uppercase tracking-[0.16em] font-semibold shrink-0 flex items-center justify-center gap-2 transition shadow-md"
           >
             <CheckCircle2 className="w-4 h-4" />
             <span>
               {confirmingWash
                 ? "Sincronizando..."
-                : "Completar entreno y enviar ropa a lavado"}
+                : "Finalizar Sesión & Enviar a Colada"}
             </span>
           </button>
         </div>
 
         {washFeedback && (
-          <div className="mt-2.5 p-3 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-200 flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-slate-300 shrink-0" />
+          <div className="mt-3 p-3.5 rounded-xl bg-club-elevated border border-club-gold/40 text-xs text-club-goldLight flex items-center gap-2.5">
+            <CheckCircle2 className="w-4 h-4 text-club-gold shrink-0" />
             <span>{washFeedback}</span>
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

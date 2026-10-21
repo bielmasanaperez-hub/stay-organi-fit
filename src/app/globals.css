@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --bg-base: #11161f;
-  --card-bg: #19212e;
+  --bg-obsidian: #09090b;
+  --gold-accent: #c8a97e;
 }
 
 * {
@@ -13,35 +13,47 @@
 
 html,
 body {
-  background-color: #11161f;
-  color: #f1f5f9;
+  background-color: #09090b;
+  color: #f5f3ef;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Clean, subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #11161f;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #27272d;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #c8a97e;
 }
 
-/* Soft Smoked Glass Card (deja intuir el flow del fondo sin cansar la vista) */
-.clean-card {
-  background: rgba(15, 21, 32, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Luxury Athletic Club Panel (Equinox / Technogym style) */
+.luxury-panel {
+  background: linear-gradient(
+    165deg,
+    rgba(24, 24, 29, 0.86) 0%,
+    rgba(15, 15, 18, 0.92) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 169, 126, 0.16);
+}
+
+.luxury-subcard {
+  background: rgba(14, 14, 17, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.gold-hairline {
+  border-color: rgba(200, 169, 126, 0.22);
 }

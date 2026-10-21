@@ -6,9 +6,12 @@ import {
   Waves,
   Dribbble,
   MapPin,
-  CheckCircle2,
+  Check,
   Moon,
-  Activity,
+  Flame,
+  Clock,
+  Sparkles,
+  Award,
 } from "lucide-react";
 import {
   APP_VERSION,
@@ -58,14 +61,6 @@ export default function StayOrganiFitApp() {
       ? "/bg-basket.png"
       : "/bg-gym.png";
 
-  // Colores mate apagados (sin luminiscencia, muy descansados para la vista)
-  const activeAccentColor =
-    currentEnvironment === "pool"
-      ? "#3b5b7c" // Azul pizarra mate
-      : currentEnvironment === "basket"
-      ? "#8c583a" // Tierra / cuero mate
-      : "#3d6b58"; // Verde salvia / bosque mate
-
   const handleSelectDay = (dayId: DayId) => {
     setSelectedDayId(dayId);
     setEnvOverride(null);
@@ -95,105 +90,93 @@ export default function StayOrganiFitApp() {
       : 0;
 
   return (
-    <div className="relative min-h-screen text-slate-200 pb-20">
-      {/* FONDO DEPORTIVO FUTURISTA CON SU FLOW ORIGINAL PERO SIN DESLUMBRAR */}
+    <div className="relative min-h-screen bg-club-obsidian text-club-ivory pb-24">
+      {/* SUBTLE ARCHITECTURAL AMBIENT GLOW IN BACKGROUND */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 scale-105 opacity-55"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105 opacity-25"
           style={{
             backgroundImage: `url('${activeBgImage}')`,
           }}
         />
-        {/* Velo translúcido suave para que se aprecie bien el fondo de piscina/gym/pista sin molestar a la lectura */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080d18]/60 via-[#080d18]/50 to-[#080d18]/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-club-obsidian/85 via-club-obsidian/92 to-club-obsidian" />
       </div>
 
-      {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-7 space-y-5">
-        {/* 1. CABECERA CON INDICADOR DE VERSIÓN */}
-        <header className="clean-card rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-slate-100 border border-white/10"
-              style={{
-                backgroundColor: activeAccentColor,
-              }}
-            >
-              {currentEnvironment === "pool" ? (
-                <Waves className="w-5 h-5" />
-              ) : currentEnvironment === "basket" ? (
-                <Dribbble className="w-5 h-5" />
-              ) : (
-                <Dumbbell className="w-5 h-5" />
-              )}
+      {/* MAIN LUXURY CLUB CONTAINER */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8 space-y-7">
+        {/* 1. PRIVATE ATHLETIC CLUB HEADER */}
+        <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-6 border-b border-club-gold/20">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-club-surface border border-club-gold/40 flex items-center justify-center text-club-gold shrink-0 shadow-lg">
+              <Award className="w-6 h-6 stroke-[1.4]" />
             </div>
 
             <div>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                <span className="font-semibold text-slate-200">
-                  StayOrganiFit
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="text-[10px] uppercase tracking-[0.26em] text-club-gold font-semibold">
+                  STAYORGANIFIT · ATHLETIC CLUB
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-[11px] font-medium text-slate-300">
+                <span className="px-2 py-0.5 rounded bg-club-surface border border-club-gold/30 text-[10px] font-mono text-club-goldLight">
                   {APP_VERSION}
                 </span>
-                <span>·</span>
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                <span className="text-club-muted">·</span>
+                <span className="text-xs text-club-stone flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-club-gold" />
                   {EUROFITNESS_INFO.name}
                 </span>
               </div>
-              <h1 className="text-lg sm:text-xl font-semibold text-slate-100 mt-0.5">
-                Horario Deportivo (08:00–09:10) y OutfitDiario
+              <h1 className="font-serif text-2xl sm:text-3xl font-semibold text-club-ivory tracking-tight mt-0.5">
+                Performance Schedule & Wardrobe Concierge
               </h1>
             </div>
           </div>
 
-          {/* Selector de instalación con tonos mate */}
+          {/* Club Space Selector */}
           <div className="flex flex-col sm:items-end gap-1.5">
-            <span className="text-xs text-slate-400">
-              Instalación de hoy:
+            <span className="text-[10px] uppercase tracking-[0.2em] text-club-stone">
+              Espacio del Club:
             </span>
-            <div className="inline-flex rounded-xl bg-slate-900/90 p-1 border border-slate-800 gap-1">
+            <div className="inline-flex rounded-xl bg-club-carbon p-1 border border-club-gold/20 gap-1">
               <button
                 onClick={() => setEnvOverride("gym")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
+                className={`px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "gym"
-                    ? "bg-[#3d6b58] text-slate-100"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-club-gold text-club-obsidian font-semibold shadow"
+                    : "text-club-stone hover:text-club-ivory"
                 }`}
               >
                 <Dumbbell className="w-3.5 h-3.5" />
-                <span>Gym</span>
+                <span>Fitness Studio</span>
               </button>
               <button
                 onClick={() => setEnvOverride("pool")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
+                className={`px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "pool"
-                    ? "bg-[#3b5b7c] text-slate-100"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-club-gold text-club-obsidian font-semibold shadow"
+                    : "text-club-stone hover:text-club-ivory"
                 }`}
               >
                 <Waves className="w-3.5 h-3.5" />
-                <span>Piscina</span>
+                <span>25m Pool & Spa</span>
               </button>
               <button
                 onClick={() => setEnvOverride("basket")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
+                className={`px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition ${
                   currentEnvironment === "basket"
-                    ? "bg-[#8c583a] text-slate-100"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-club-gold text-club-obsidian font-semibold shadow"
+                    : "text-club-stone hover:text-club-ivory"
                 }`}
               >
                 <Dribbble className="w-3.5 h-3.5" />
-                <span>Pista Básquet</span>
+                <span>Hardwood Court</span>
               </button>
             </div>
           </div>
         </header>
 
-        {/* 2. SELECTOR DE DÍAS (LUNES A VIERNES) */}
-        <section className="grid grid-cols-5 gap-2 sm:gap-2.5">
-          {ORDERED_DAYS.map((dId) => {
+        {/* 2. EDITORIAL WEEKLY SCHEDULE RIBBON (LUNES A VIERNES) */}
+        <section className="grid grid-cols-5 gap-2.5 sm:gap-3.5">
+          {ORDERED_DAYS.map((dId, idx) => {
             const d = WEEKLY_EUROFITNESS_PLAN[dId];
             const isSelected = dId === selectedDayId;
             const isToday = dId === getTodayDayId();
@@ -202,47 +185,55 @@ export default function StayOrganiFitApp() {
               <button
                 key={d.id}
                 onClick={() => handleSelectDay(d.id)}
-                className={`rounded-xl p-2.5 sm:p-3.5 border text-left transition-all ${
+                className={`rounded-xl p-3.5 sm:p-4 text-left transition-all border relative overflow-hidden ${
                   isSelected
-                    ? "bg-slate-800/90 border-slate-600"
-                    : "bg-slate-900/55 border-slate-800/80 text-slate-400 hover:bg-slate-800/45 hover:text-slate-200"
+                    ? "bg-club-elevated border-club-gold/60 shadow-xl"
+                    : "bg-club-carbon/80 border-white/10 hover:border-club-gold/30"
                 }`}
               >
+                {isSelected && (
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-club-gold" />
+                )}
+
                 <div className="flex items-center justify-between gap-1">
-                  <span className="text-xs font-semibold text-slate-200">
-                    {d.dayName}
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-club-gold">
+                    0{idx + 1} · {d.shortName}
                   </span>
                   {isToday && (
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-700 text-slate-200">
+                    <span className="px-1.5 py-0.5 rounded bg-club-gold/20 text-club-goldLight text-[9px] uppercase tracking-widest font-semibold">
                       Hoy
                     </span>
                   )}
                 </div>
 
-                <div className="mt-1.5 flex items-center gap-1.5">
+                <div className="font-serif text-base sm:text-xl font-semibold text-club-ivory mt-1 truncate">
+                  {d.dayName}
+                </div>
+
+                <div className="mt-1 flex items-center gap-1.5 text-xs text-club-stone">
                   {d.environment === "pool" ? (
-                    <Waves className="w-4 h-4 shrink-0 text-slate-300" />
+                    <Waves className="w-3.5 h-3.5 text-club-gold shrink-0" />
                   ) : d.environment === "basket" ? (
-                    <Dribbble className="w-4 h-4 shrink-0 text-slate-300" />
+                    <Dribbble className="w-3.5 h-3.5 text-club-gold shrink-0" />
                   ) : (
-                    <Dumbbell className="w-4 h-4 shrink-0 text-slate-300" />
+                    <Dumbbell className="w-3.5 h-3.5 text-club-gold shrink-0" />
                   )}
-                  <span className="text-xs sm:text-sm font-medium text-slate-100 truncate">
+                  <span className="truncate">
                     {d.environment === "pool"
-                      ? "Piscina"
+                      ? "Piscina 25m"
                       : d.environment === "basket"
-                      ? "Pista + Gym"
-                      : "Gym"}
+                      ? "Pista & Sala"
+                      : "Fuerza & Core"}
                   </span>
                 </div>
 
                 {d.nightBasket.active && (
-                  <div className="mt-1.5 pt-1.5 border-t border-slate-700/60 flex items-center gap-1 text-[10px] text-slate-300 truncate">
-                    <Moon className="w-3 h-3 shrink-0 text-slate-400" />
+                  <div className="mt-2 pt-2 border-t border-white/10 flex items-center gap-1 text-[10px] text-club-goldLight truncate">
+                    <Moon className="w-3 h-3 shrink-0 text-club-gold" />
                     <span className="truncate">
                       {d.id === "miercoles"
                         ? "Noche: Físico + Básquet"
-                        : "Noche: Básquet"}
+                        : "Noche: Entreno Básquet"}
                     </span>
                   </div>
                 )}
@@ -251,45 +242,71 @@ export default function StayOrganiFitApp() {
           })}
         </section>
 
-        {/* 3. RESUMEN DEL DÍA Y ENTRENO DE BÁSQUET POR LA NOCHE */}
-        <section className="clean-card rounded-2xl p-5">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
-            <div className="lg:col-span-8 space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span
-                  className="px-2.5 py-1 rounded-lg font-medium text-slate-100"
-                  style={{ backgroundColor: activeAccentColor }}
-                >
-                  {dayPlan.dayName} · 08:00 a 09:00h (Ducha 09:00–09:10h)
+        {/* 3. CINEMATIC MAGAZINE-STYLE HERO BANNER (EQUINOX / LUXURY CLUB STYLE) */}
+        <section className="relative rounded-2xl overflow-hidden border border-club-gold/25 shadow-2xl min-h-[300px] flex flex-col justify-end">
+          {/* High-Resolution Club Photography Background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+            style={{
+              backgroundImage: `url('${activeBgImage}')`,
+            }}
+          />
+          {/* Rich Editorial Vignette Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-club-obsidian via-club-obsidian/75 to-club-obsidian/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-club-obsidian/90 via-club-obsidian/55 to-transparent" />
+
+          {/* Hero Content */}
+          <div className="relative z-10 p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+            <div className="lg:col-span-8 space-y-3">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="px-3 py-1 rounded-full bg-club-gold text-club-obsidian text-[10px] uppercase tracking-[0.2em] font-bold">
+                  {dayPlan.dayName} · 08:00 – 09:00H (+ DUCHA 09:00–09:10H)
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-slate-800/90 border border-slate-700 text-slate-300">
+                <span className="px-3 py-1 rounded-full bg-club-obsidian/80 backdrop-blur-md border border-club-gold/30 text-[11px] uppercase tracking-[0.14em] text-club-goldLight">
                   {dayPlan.facilityZone}
                 </span>
               </div>
 
-              <h2 className="text-lg sm:text-xl font-semibold text-slate-100">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-club-ivory leading-[1.1] tracking-tight">
                 {dayPlan.headline}
               </h2>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+
+              <p className="text-xs sm:text-sm text-club-stone max-w-2xl leading-relaxed">
                 {dayPlan.subtitle}
               </p>
+
+              {/* Key Performance Metrics Strip */}
+              <div className="pt-2 flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.16em] text-club-stone">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-club-gold" />
+                  <strong className="text-club-ivory">60 MIN</strong> ENTRENO +{" "}
+                  <strong className="text-club-ivory">10 MIN</strong> DUCHA
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Flame className="w-3.5 h-3.5 text-club-gold" />
+                  EST. <strong className="text-club-ivory">{dayPlan.caloriesEst} KCAL</strong>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-club-gold" />
+                  CARGA: <strong className="text-club-ivory">{dayPlan.cnsLoad}</strong>
+                </span>
+              </div>
             </div>
 
+            {/* Evening Basketball Load Advisory Card */}
             <div className="lg:col-span-4">
-              <div className="p-3.5 rounded-xl border bg-slate-900/70 border-slate-700/80">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-slate-200 flex items-center gap-1.5">
-                    <Moon className="w-3.5 h-3.5 text-slate-400" />
-                    Equipo de Básquet (Noche)
+              <div className="bg-club-obsidian/85 backdrop-blur-md border border-club-gold/30 rounded-xl p-4 sm:p-5">
+                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-club-gold font-semibold">
+                  <span className="flex items-center gap-1.5">
+                    <Moon className="w-3.5 h-3.5" />
+                    Básquet Equipo (Noche)
                   </span>
-                  <span className="text-slate-400">
-                    Carga {dayPlan.nightBasket.loadLevel.toLowerCase()}
-                  </span>
+                  <span>CARGA {dayPlan.nightBasket.loadLevel}</span>
                 </div>
-                <p className="text-xs sm:text-sm font-semibold text-slate-100 mt-1">
+                <p className="font-serif text-lg font-semibold text-club-ivory mt-1.5 leading-snug">
                   {dayPlan.nightBasket.title}
                 </p>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                <p className="text-xs text-club-stone mt-1.5 leading-relaxed">
                   {dayPlan.nightBasket.coachNote}
                 </p>
               </div>
@@ -297,30 +314,36 @@ export default function StayOrganiFitApp() {
           </div>
         </section>
 
-        {/* 4. CRONÓMETRO DE TEMPOS */}
+        {/* 4. PRECISION LUXURY CHRONOMETER CONSOLE */}
         <TempoChronometer
           tempos={dayPlan.tempos}
           activeTempoId={activeTempoId}
           onSelectTempo={setActiveTempoId}
-          accentColor={activeAccentColor}
         />
 
-        {/* 5. BLOQUES DE EJERCICIOS POR TIEMPOS */}
-        <section className="space-y-3.5">
-          <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-            <div className="flex items-center gap-2">
-              <Activity className="w-5 h-5 text-slate-300" />
-              <h2 className="text-base sm:text-lg font-semibold text-slate-100">
-                Entrenamiento por Tempos · {dayPlan.dayName}
+        {/* 5. DETAILED WORKOUT REGIMEN BY TEMPOS */}
+        <section className="space-y-5">
+          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-club-gold/15 pb-3">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.22em] text-club-gold font-semibold block">
+                PROGRAMA DE ENTRENAMIENTO · EUROFITNESS ESTACIÓ DEL NORD
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-club-ivory mt-0.5">
+                Secuencia de Tempos · {dayPlan.dayName}
               </h2>
             </div>
-            <span className="text-xs text-slate-300 bg-slate-800/90 border border-slate-700 px-3 py-1 rounded-full">
-              Completado: {doneExercisesCount}/{allDayExercises.length} (
-              {workoutProgressPct}%)
-            </span>
+
+            <div className="flex items-center gap-3">
+              <span className="text-xs uppercase tracking-[0.16em] text-club-stone">
+                Ejecución de hoy:
+              </span>
+              <span className="px-3.5 py-1 rounded-full bg-club-elevated border border-club-gold/35 font-mono text-xs text-club-goldLight">
+                {doneExercisesCount} / {allDayExercises.length} ({workoutProgressPct}%)
+              </span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {dayPlan.tempos.map((tempo, idx) => {
               const isSelectedTempo = tempo.id === activeTempoId;
               const isShower = tempo.phaseType === "shower";
@@ -329,37 +352,46 @@ export default function StayOrganiFitApp() {
                 <div
                   key={tempo.id}
                   onClick={() => setActiveTempoId(tempo.id)}
-                  className={`clean-card rounded-2xl p-4 sm:p-5 transition cursor-pointer ${
+                  className={`luxury-panel rounded-2xl p-6 transition cursor-pointer relative overflow-hidden ${
                     isSelectedTempo
-                      ? "ring-1 ring-slate-600"
-                      : "hover:border-slate-700"
+                      ? "border-club-gold/60 shadow-2xl"
+                      : "hover:border-club-gold/30"
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-700/60">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="px-2.5 py-0.5 rounded-md text-xs font-medium text-slate-100"
-                        style={{ backgroundColor: activeAccentColor }}
-                      >
-                        {isShower ? "Ducha" : `Tempo ${idx + 1}`}
+                  {isSelectedTempo && (
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-club-gold" />
+                  )}
+
+                  <div className="flex items-baseline justify-between gap-2 pb-4 mb-4 border-b border-white/10">
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-serif text-2xl font-semibold text-club-gold">
+                        0{idx + 1}
                       </span>
-                      <span className="text-xs sm:text-sm font-semibold text-slate-100">
+                      <div>
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-club-gold font-semibold block">
+                          {isShower ? "VESTUARIO & DUCHA EXPRESS" : `FASE ${idx + 1}`}
+                        </span>
+                        <h3 className="font-serif text-lg sm:text-xl font-semibold text-club-ivory mt-0.5">
+                          {tempo.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="text-right shrink-0">
+                      <span className="font-mono text-xs text-club-ivory block">
                         {tempo.startTime} – {tempo.endTime}
                       </span>
+                      <span className="font-mono text-[10px] text-club-stone">
+                        {tempo.durationMinutes} MIN
+                      </span>
                     </div>
-                    <span className="text-xs text-slate-400">
-                      {tempo.durationMinutes} min
-                    </span>
                   </div>
 
-                  <h3 className="text-sm sm:text-base font-semibold text-slate-100">
-                    {tempo.title}
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-0.5 mb-3">
+                  <p className="text-xs sm:text-sm text-club-stone mb-4 leading-relaxed">
                     {tempo.description}
                   </p>
 
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     {tempo.exercises.map((ex) => {
                       const isDone = Boolean(completedExercises[ex.id]);
                       return (
@@ -369,51 +401,51 @@ export default function StayOrganiFitApp() {
                             e.stopPropagation();
                             toggleExerciseDone(ex.id);
                           }}
-                          className={`p-3 rounded-xl border transition flex items-start gap-3 ${
+                          className={`p-4 rounded-xl border transition flex items-start gap-3.5 ${
                             isDone
-                              ? "bg-slate-800/35 border-slate-700/40"
-                              : "bg-slate-900/65 border-slate-800 hover:border-slate-700"
+                              ? "bg-club-obsidian/50 border-club-gold/20"
+                              : "luxury-subcard hover:border-club-gold/30"
                           }`}
                         >
                           <div
-                            className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
+                            className={`w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5 border transition ${
                               isDone
-                                ? "bg-[#3d6b58] border-[#3d6b58] text-slate-100"
-                                : "border-slate-600 bg-slate-800"
+                                ? "bg-club-gold border-club-gold text-club-obsidian"
+                                : "border-club-stone/40 bg-club-obsidian"
                             }`}
                           >
                             {isDone && (
-                              <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2]" />
+                              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                             )}
                           </div>
 
                           <div className="min-w-0 flex-1">
-                            <div className="flex flex-wrap items-center justify-between gap-1">
+                            <div className="flex flex-wrap items-baseline justify-between gap-2">
                               <span
-                                className={`text-xs sm:text-sm font-medium ${
+                                className={`text-sm font-semibold ${
                                   isDone
-                                    ? "line-through text-slate-500"
-                                    : "text-slate-100"
+                                    ? "line-through text-club-muted"
+                                    : "text-club-ivory"
                                 }`}
                               >
                                 {ex.name}
                               </span>
-                              <span className="text-xs text-slate-400">
-                                {ex.durationMinutes} min
+                              <span className="font-mono text-[11px] text-club-gold shrink-0">
+                                {ex.durationMinutes} MIN
                               </span>
                             </div>
 
-                            <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-300">
+                            <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-club-goldLight/90 font-medium">
                               <span>{ex.setsAndReps}</span>
                               {ex.restSeconds > 0 && (
-                                <span className="text-slate-400">
-                                  · Descanso: {ex.restSeconds}s
+                                <span className="text-club-stone">
+                                  · Recuperación: {ex.restSeconds}s
                                 </span>
                               )}
                             </div>
 
-                            <p className="text-xs text-slate-400 mt-1">
-                              {ex.tip}
+                            <p className="text-xs text-club-stone mt-1.5 italic font-serif">
+                              &ldquo;{ex.tip}&rdquo;
                             </p>
                           </div>
                         </div>
@@ -426,11 +458,10 @@ export default function StayOrganiFitApp() {
           </div>
         </section>
 
-        {/* 6. CONEXIÓN CON OUTFITDIARIO */}
+        {/* 6. LOCKER ROOM & OUTFITDIARIO CONCIERGE */}
         <OutfitDiarioBridge
           dayPlan={dayPlan}
           activeEnvironment={currentEnvironment}
-          accentColor={activeAccentColor}
         />
       </div>
     </div>

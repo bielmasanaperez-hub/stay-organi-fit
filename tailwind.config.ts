@@ -10,35 +10,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          bg: "#050811",
-          panel: "#0B1120",
-          card: "#0F172A",
-          cyan: "#00F0FF",
-          emerald: "#00FF87",
-          orange: "#FF6B00",
-          purple: "#A855F7",
-          rose: "#FF2E63",
+        club: {
+          obsidian: "#09090B",
+          carbon: "#111114",
+          surface: "#16161A",
+          elevated: "#1D1D22",
+          border: "#27272D",
+          gold: "#C8A97E",
+          goldLight: "#DFC6A2",
+          goldMuted: "#8F7552",
+          ivory: "#F5F3EF",
+          stone: "#A09D96",
+          muted: "#6E6B64",
+          sage: "#3B5E4C",
+          ocean: "#2D4F6C",
+          terracotta: "#8C4A32",
         },
       },
       fontFamily: {
-        sans: ["var(--font-space)", "Inter", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
-      },
-      animation: {
-        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "float": "float 6s ease-in-out infinite",
-        "scanline": "scanline 8s linear infinite",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-8px)" },
-        },
-        scanline: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(1000%)" },
-        },
+        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
     },
   },

@@ -1,3 +1,5 @@
+export const APP_VERSION = "v1.2";
+
 export type EnvironmentMode = "gym" | "pool" | "basket";
 
 export type DayId = "lunes" | "martes" | "miercoles" | "jueves" | "viernes";
@@ -117,7 +119,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
     cnsLoad: "ALTA (Potencia)",
     bgImage: "/bg-gym.png",
     themeAccent: {
-      primary: "#00FF87",
+      primary: "#3d6b58",
       glow: "rgba(0, 255, 135, 0.32)",
       badgeBg: "rgba(0, 255, 135, 0.12)",
       border: "rgba(0, 255, 135, 0.4)",
@@ -140,7 +142,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:08",
         durationMinutes: 8,
         phaseType: "warmup",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Subir pulsaciones rápido y lubricar articulaciones antes de tocar hierro.",
         exercises: [
           {
@@ -171,7 +173,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:53",
         durationMinutes: 45,
         phaseType: "main",
-        accentColor: "#00FF87",
+        accentColor: "#3d6b58",
         description: "Superseries cronometradas de fuerza + transferencia a salto para acabar a las 08:53 en punto.",
         exercises: [
           {
@@ -211,7 +213,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:00",
         durationMinutes: 7,
         phaseType: "cooldown",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Bajar pulsaciones para no seguir sudando al salir de la ducha.",
         exercises: [
           {
@@ -233,7 +235,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:10",
         durationMinutes: 10,
         phaseType: "shower",
-        accentColor: "#A855F7",
+        accentColor: "#475569",
         description: "10 minutos exactos: ducha templada-fría (cierra poros), vestir el outfit de Universidad generado en OutfitDiario y salir.",
         exercises: [
           {
@@ -279,7 +281,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
     cnsLoad: "ALTA (Potencia)",
     bgImage: "/bg-basket.png",
     themeAccent: {
-      primary: "#FF6B00",
+      primary: "#8c583a",
       glow: "rgba(255, 107, 0, 0.35)",
       badgeBg: "rgba(255, 107, 0, 0.14)",
       border: "rgba(255, 107, 0, 0.45)",
@@ -302,7 +304,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:08",
         durationMinutes: 8,
         phaseType: "warmup",
-        accentColor: "#FF6B00",
+        accentColor: "#8c583a",
         description: "Entramos directo a la pista de básquet del Eurofitness con balón en mano.",
         exercises: [
           {
@@ -333,7 +335,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:53",
         durationMinutes: 45,
         phaseType: "main",
-        accentColor: "#FF6B00",
+        accentColor: "#8c583a",
         description: "A las 08:28 subimos de la pista a la Sala Fitness para 25 min intensos de tren superior en superserie.",
         exercises: [
           {
@@ -373,7 +375,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:00",
         durationMinutes: 7,
         phaseType: "cooldown",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Soltar tensión en hombros y enfriar antes de entrar al vestuario.",
         exercises: [
           {
@@ -395,7 +397,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:10",
         durationMinutes: 10,
         phaseType: "shower",
-        accentColor: "#A855F7",
+        accentColor: "#475569",
         description: "09:00 en punto al agua. A las 09:10 saliendo por la puerta de Eurofitness hacia la Uni.",
         exercises: [
           {
@@ -439,7 +441,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
     cnsLoad: "BAJA (Descarga)",
     bgImage: "/bg-pool.png",
     themeAccent: {
-      primary: "#00F0FF",
+      primary: "#3b5b7c",
       glow: "rgba(0, 240, 255, 0.35)",
       badgeBg: "rgba(0, 240, 255, 0.14)",
       border: "rgba(0, 240, 255, 0.45)",
@@ -462,7 +464,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:08",
         durationMinutes: 8,
         phaseType: "warmup",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Entrada al agua a las 08:00h: movilidad articular sin gravedad para descomprimir tobillos, rodillas y lumbar.",
         exercises: [
           {
@@ -484,7 +486,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:53",
         durationMinutes: 45,
         phaseType: "main",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Usamos Pull-Buoy entre los muslos durante el 70% de la sesión para trabajar pulmón y espalda reservando las piernas al 100% para el físico de esta noche.",
         exercises: [
           {
@@ -524,7 +526,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:00",
         durationMinutes: 7,
         phaseType: "cooldown",
-        accentColor: "#00FF87",
+        accentColor: "#3d6b58",
         description: "Salir de la piscina a las 08:59h con las pulsaciones bajas directo a las duchas.",
         exercises: [
           {
@@ -546,7 +548,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:10",
         durationMinutes: 10,
         phaseType: "shower",
-        accentColor: "#A855F7",
+        accentColor: "#475569",
         description: "Aclarado rápido del cloro, hidratación y vestirse el Outfit de Universidad de OutfitDiario.",
         exercises: [
           {
@@ -591,7 +593,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
     cnsLoad: "BAJA (Descarga)",
     bgImage: "/bg-pool.png",
     themeAccent: {
-      primary: "#00F0FF",
+      primary: "#3b5b7c",
       glow: "rgba(0, 240, 255, 0.35)",
       badgeBg: "rgba(0, 240, 255, 0.14)",
       border: "rgba(0, 240, 255, 0.45)",
@@ -614,7 +616,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:08",
         durationMinutes: 8,
         phaseType: "warmup",
-        accentColor: "#00FF87",
+        accentColor: "#3d6b58",
         description: "8 minutos en la zona de estiramientos para soltar fascia lata, gemelos y espalda tras la noche del miércoles.",
         exercises: [
           {
@@ -636,7 +638,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:53",
         durationMinutes: 45,
         phaseType: "main",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "15 min de trabajo abdominal/glúteo medio y a las 08:23 bajamos directo a la piscina para 30 min de descarga acuática.",
         exercises: [
           {
@@ -676,7 +678,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:00",
         durationMinutes: 7,
         phaseType: "cooldown",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Estiramiento de psoas e isquios en el agua y salida hacia vestuarios.",
         exercises: [
           {
@@ -698,7 +700,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:10",
         durationMinutes: 10,
         phaseType: "shower",
-        accentColor: "#A855F7",
+        accentColor: "#475569",
         description: "Ducha alternando 1 min caliente / 30 seg fría en piernas y vestir el Outfit de Universidad.",
         exercises: [
           {
@@ -742,7 +744,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
     cnsLoad: "MEDIA (Técnica/PAP)",
     bgImage: "/bg-basket.png",
     themeAccent: {
-      primary: "#FF6B00",
+      primary: "#8c583a",
       glow: "rgba(255, 107, 0, 0.35)",
       badgeBg: "rgba(255, 107, 0, 0.14)",
       border: "rgba(255, 107, 0, 0.45)",
@@ -765,7 +767,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:08",
         durationMinutes: 8,
         phaseType: "warmup",
-        accentColor: "#FF6B00",
+        accentColor: "#8c583a",
         description: "Movilidad rápida de cadera/tobillo y primeros toques de balón en la pista del Eurofitness.",
         exercises: [
           {
@@ -787,7 +789,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "08:53",
         durationMinutes: 45,
         phaseType: "main",
-        accentColor: "#00FF87",
+        accentColor: "#3d6b58",
         description: "Pocas repeticiones con descanso completo para potenciar fibras rápidas sin agujetas, seguido de 30 min de tiro y situaciones reales.",
         exercises: [
           {
@@ -818,7 +820,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:00",
         durationMinutes: 7,
         phaseType: "cooldown",
-        accentColor: "#00F0FF",
+        accentColor: "#3b5b7c",
         description: "Anotar 10 tiros libres seguidos limpios y estirar suave antes de ir a la ducha.",
         exercises: [
           {
@@ -840,7 +842,7 @@ export const WEEKLY_EUROFITNESS_PLAN: Record<DayId, DayPlan> = {
         endTime: "09:10",
         durationMinutes: 10,
         phaseType: "shower",
-        accentColor: "#A855F7",
+        accentColor: "#475569",
         description: "Ducha rápida de 09:00 a 09:10, vestir el Outfit de Viernes generado en OutfitDiario y rumbo a la Uni.",
         exercises: [
           {

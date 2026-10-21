@@ -148,29 +148,28 @@ export default function OutfitDiarioBridge({
   const isConnectedLive = Boolean(syncData?.connectedLive);
 
   return (
-    <div className="clean-card rounded-2xl p-5 sm:p-6 shadow-lg">
+    <div className="clean-card rounded-2xl p-5 sm:p-6">
       {/* Cabecera */}
       <div className="flex flex-wrap items-start justify-between gap-3 pb-4 border-b border-slate-700/60">
         <div className="flex items-start gap-3.5">
           <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-slate-100 border border-white/10"
             style={{
-              backgroundColor: `${accentColor}20`,
-              color: accentColor,
+              backgroundColor: accentColor,
             }}
           >
             <Shirt className="w-5 h-5" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-200 border border-slate-700 flex items-center gap-1.5">
-                <Link2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 flex items-center gap-1.5">
+                <Link2 className="w-3.5 h-3.5 text-slate-400" />
                 {isConnectedLive
                   ? "Conectado en vivo con OutfitDiario"
                   : "Sincronizado con OutfitDiario"}
               </span>
             </div>
-            <h2 className="text-base sm:text-lg font-bold text-white mt-1.5">
+            <h2 className="text-base sm:text-lg font-semibold text-slate-100 mt-1.5">
               {dayPlan.extraOutfitPack.packName}
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
@@ -190,7 +189,7 @@ export default function OutfitDiarioBridge({
           <button
             onClick={handleRotateSportKit}
             disabled={loading}
-            className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-white flex items-center gap-1.5 transition"
+            className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition"
           >
             <RefreshCw
               className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`}
@@ -201,7 +200,7 @@ export default function OutfitDiarioBridge({
             href={outfitDiarioUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 flex items-center gap-1.5 transition hover:opacity-95"
+            className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-100 flex items-center gap-1.5 transition hover:opacity-90 border border-white/10"
             style={{ backgroundColor: accentColor }}
           >
             <span>Abrir OutfitDiario</span>
@@ -228,11 +227,11 @@ export default function OutfitDiarioBridge({
               }
             }}
             placeholder="https://outfit-diario.vercel.app o http://localhost:3000"
-            className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none"
+            className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none"
           />
           <button
             onClick={() => fetchOutfitDiarioSync(variant, outfitDiarioUrl)}
-            className="px-3 py-1.5 rounded-lg bg-slate-200 text-slate-900 text-xs font-semibold"
+            className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-100 text-xs font-medium"
           >
             Guardar
           </button>
@@ -257,11 +256,11 @@ export default function OutfitDiarioBridge({
         {activeEnvironment === "pool" && morningKit?.poolKit ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-sky-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Bañador</span>
-                <Waves className="w-4 h-4" />
+                <Waves className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1">
+              <p className="text-sm font-semibold text-slate-100 mt-1">
                 {morningKit.poolKit.swimsuit}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -270,11 +269,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-sky-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Gorro y Gafas</span>
-                <Waves className="w-4 h-4" />
+                <Waves className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1">
+              <p className="text-sm font-semibold text-slate-100 mt-1">
                 {morningKit.poolKit.capAndGoggles}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -283,11 +282,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-sky-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Calzado de agua</span>
-                <ShowerHead className="w-4 h-4" />
+                <ShowerHead className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1">
+              <p className="text-sm font-semibold text-slate-100 mt-1">
                 {morningKit.poolKit.flipFlops}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -296,11 +295,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-sky-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Abrigo y Toalla</span>
-                <Shirt className="w-4 h-4" />
+                <Shirt className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1">
+              <p className="text-sm font-semibold text-slate-100 mt-1">
                 {morningKit.warmupLayer?.name || "Sudadera cómoda"}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -311,11 +310,11 @@ export default function OutfitDiarioBridge({
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-emerald-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Camiseta de entreno</span>
-                <Shirt className="w-4 h-4" />
+                <Shirt className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1 truncate">
+              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
                 {morningKit?.top?.name || "Camiseta técnica deportiva"}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -324,11 +323,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-emerald-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Pantalón corto</span>
-                <Dumbbell className="w-4 h-4" />
+                <Dumbbell className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1 truncate">
+              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
                 {morningKit?.bottom?.name || "Pantalón corto deportivo"}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -337,11 +336,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-amber-400 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Calzado deportivo</span>
-                <Dribbble className="w-4 h-4" />
+                <Dribbble className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1 truncate">
+              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
                 {morningKit?.shoes?.name ||
                   (activeEnvironment === "basket"
                     ? "Bambas de Básquet"
@@ -355,11 +354,11 @@ export default function OutfitDiarioBridge({
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
-              <div className="flex items-center justify-between text-xs text-slate-300 font-medium">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>Sudadera y Ducha</span>
-                <ShowerHead className="w-4 h-4" />
+                <ShowerHead className="w-4 h-4 text-slate-400" />
               </div>
-              <p className="text-sm font-semibold text-white mt-1 truncate">
+              <p className="text-sm font-semibold text-slate-100 mt-1 truncate">
                 {morningKit?.warmupLayer?.name || "Sudadera de mañana"}
               </p>
               <span className="text-xs text-slate-400 block mt-1">
@@ -372,32 +371,32 @@ export default function OutfitDiarioBridge({
 
       {/* 2. EQUIPACIÓN EXTRA NOCHE (MIÉRCOLES Y VIERNES) */}
       {nightKit && (
-        <div className="mt-4 p-4 rounded-xl bg-slate-900/90 border border-amber-500/30">
+        <div className="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700/80">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-            <span className="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
-              <Moon className="w-4 h-4" />
+            <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
+              <Moon className="w-4 h-4 text-slate-400" />
               2. Equipación para esta noche · {nightKit.sessionTitle}
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 text-xs font-medium">
+            <span className="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
               Segundo conjunto limpio
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-            <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/70">
+            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
               <span className="text-slate-400 block">Camiseta noche</span>
-              <strong className="text-white block mt-0.5 text-sm">
+              <strong className="text-slate-100 block mt-0.5 text-sm">
                 {nightKit.top?.name}
               </strong>
             </div>
-            <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/70">
+            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
               <span className="text-slate-400 block">Pantalón corto noche</span>
-              <strong className="text-white block mt-0.5 text-sm">
+              <strong className="text-slate-100 block mt-0.5 text-sm">
                 {nightKit.bottom?.name}
               </strong>
             </div>
-            <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/70">
+            <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/60">
               <span className="text-slate-400 block">Calzado y accesorios</span>
-              <strong className="text-amber-300 block mt-0.5 text-sm">
+              <strong className="text-slate-200 block mt-0.5 text-sm">
                 {dayPlan.id === "miercoles"
                   ? "Zapatillas físico (40m) + Bambas pista (1h15)"
                   : "Bambas de pista (1h15) + Agua 1.5L"}
@@ -411,12 +410,12 @@ export default function OutfitDiarioBridge({
       <div className="mt-5 pt-4 border-t border-slate-700/60">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
-            <Backpack className="w-4 h-4 text-slate-300" />
-            <span className="text-sm font-semibold text-white">
+            <Backpack className="w-4 h-4 text-slate-400" />
+            <span className="text-sm font-semibold text-slate-100">
               Checklist de mochila y ducha (09:00 – 09:10h)
             </span>
           </div>
-          <span className="text-xs text-slate-300 font-medium">
+          <span className="text-xs text-slate-400 font-medium">
             {completedCount} de {packItems.length} preparados ({progressBagPct}%)
           </span>
         </div>
@@ -430,23 +429,23 @@ export default function OutfitDiarioBridge({
                 onClick={() => toggleChecklistItem(item.id)}
                 className={`p-3 rounded-xl border text-left flex items-start gap-3 transition ${
                   isChecked
-                    ? "bg-slate-800/40 border-slate-700/50 text-slate-400"
-                    : "bg-slate-900/60 border-slate-800 hover:border-slate-700 text-white"
+                    ? "bg-slate-800/35 border-slate-700/40 text-slate-400"
+                    : "bg-slate-900/60 border-slate-800 hover:border-slate-700 text-slate-100"
                 }`}
               >
                 <div
                   className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
                     isChecked
-                      ? "bg-emerald-500 border-emerald-500 text-slate-950"
+                      ? "bg-[#3d6b58] border-[#3d6b58] text-slate-100"
                       : "border-slate-600 bg-slate-800"
                   }`}
                 >
-                  {isChecked && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
+                  {isChecked && <Check className="w-3.5 h-3.5 stroke-[2.2]" />}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div
                     className={`text-xs sm:text-sm font-medium ${
-                      isChecked ? "line-through text-slate-400" : "text-white"
+                      isChecked ? "line-through text-slate-500" : "text-slate-100"
                     }`}
                   >
                     {item.name}
@@ -461,21 +460,21 @@ export default function OutfitDiarioBridge({
         </div>
 
         {/* Confirmar entreno y mandar ropa a lavar */}
-        <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 rounded-xl p-3.5">
+        <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/75 border border-slate-800 rounded-xl p-3.5">
           <div className="text-xs sm:text-sm text-slate-300">
-            <strong className="text-white block">
+            <strong className="text-slate-100 block">
               ¿Has terminado el entreno de hoy?
             </strong>
             <span>
               Marca como lavando (5 días) la ropa deportiva usada hoy en{" "}
-              <strong className="text-white">OutfitDiario</strong>.
+              <strong className="text-slate-200">OutfitDiario</strong>.
             </span>
           </div>
 
           <button
             onClick={handleConfirmWorkoutAndWash}
             disabled={confirmingWash}
-            className="px-4 py-2.5 rounded-xl text-slate-950 text-xs font-semibold shrink-0 flex items-center justify-center gap-2 transition hover:opacity-95"
+            className="px-4 py-2.5 rounded-xl text-slate-100 text-xs font-medium shrink-0 flex items-center justify-center gap-2 transition hover:opacity-90 border border-white/10"
             style={{ backgroundColor: accentColor }}
           >
             <CheckCircle2 className="w-4 h-4" />
@@ -488,8 +487,8 @@ export default function OutfitDiarioBridge({
         </div>
 
         {washFeedback && (
-          <div className="mt-2.5 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-200 flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="mt-2.5 p-3 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-200 flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-slate-300 shrink-0" />
             <span>{washFeedback}</span>
           </div>
         )}

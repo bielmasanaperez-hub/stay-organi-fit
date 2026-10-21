@@ -60,7 +60,7 @@ export default function TempoChronometer({
         const gain = ctx.createGain();
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -159,7 +159,7 @@ export default function TempoChronometer({
       : 0;
 
   return (
-    <div className="clean-card rounded-2xl p-5 shadow-lg">
+    <div className="clean-card rounded-2xl p-5">
       {/* Cabecera limpia de horario */}
       <div className="flex flex-wrap items-center justify-between gap-2 pb-3.5 mb-4 border-b border-slate-700/60">
         <div className="flex items-center gap-2.5">
@@ -179,7 +179,7 @@ export default function TempoChronometer({
           </div>
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white transition"
+            className="p-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-slate-100 transition"
             title={soundEnabled ? "Silenciar aviso" : "Activar aviso sonoro"}
           >
             {soundEnabled ? (
@@ -202,20 +202,17 @@ export default function TempoChronometer({
               onClick={() => onSelectTempo(t.id)}
               className={`p-3 rounded-xl border text-left transition-all ${
                 isSelected
-                  ? "bg-slate-800/95 border-slate-500 shadow-sm"
+                  ? "bg-slate-800/90 border-slate-600"
                   : "bg-slate-900/50 border-slate-800/80 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
               }`}
             >
               <div className="flex items-center justify-between text-xs">
-                <span
-                  className="font-semibold"
-                  style={{ color: isSelected ? accentColor : undefined }}
-                >
+                <span className="font-medium text-slate-300">
                   {isShower ? "Ducha" : `Tempo ${index + 1}`}
                 </span>
                 <span className="text-slate-400">{t.durationMinutes} min</span>
               </div>
-              <div className="text-sm font-bold text-white mt-0.5">
+              <div className="text-sm font-semibold text-slate-100 mt-0.5">
                 {t.startTime} – {t.endTime}
               </div>
               <div className="text-xs text-slate-400 truncate mt-0.5">
@@ -227,10 +224,10 @@ export default function TempoChronometer({
       </div>
 
       {/* Panel del Temporizador Activo */}
-      <div className="bg-slate-900/75 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-20 h-20 rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col items-center justify-center shrink-0">
-            <span className="text-2xl font-bold text-white tracking-tight">
+            <span className="text-2xl font-semibold text-slate-100 tracking-tight">
               {formatMMSS(secondsLeft)}
             </span>
             <span className="text-[10px] text-slate-400 mt-0.5">
@@ -242,7 +239,7 @@ export default function TempoChronometer({
             <span className="text-xs font-medium text-slate-400">
               {activeTempo.startTime} a {activeTempo.endTime} ({activeTempo.durationMinutes} min)
             </span>
-            <h3 className="text-base font-semibold text-white mt-0.5">
+            <h3 className="text-base font-semibold text-slate-100 mt-0.5">
               {activeTempo.title}
             </h3>
             <p className="text-xs text-slate-300 mt-0.5">
@@ -251,11 +248,11 @@ export default function TempoChronometer({
           </div>
         </div>
 
-        {/* Botones de control y descanso */}
+        {/* Botones de control y descanso (tonos mate sin brillo) */}
         <div className="flex flex-wrap items-center gap-2.5 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-800">
           <button
             onClick={() => setIsRunning(!isRunning)}
-            className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-950 flex items-center gap-2 transition hover:opacity-95"
+            className="px-4 py-2.5 rounded-xl text-xs font-medium text-slate-100 flex items-center gap-2 transition hover:opacity-90 border border-white/10"
             style={{ backgroundColor: accentColor }}
           >
             {isRunning ? (
@@ -289,7 +286,7 @@ export default function TempoChronometer({
               <button
                 key={sec}
                 onClick={() => setRestSecondsLeft(sec)}
-                className="px-2.5 py-1 rounded-lg bg-slate-700/80 hover:bg-slate-600 text-xs font-medium text-slate-100 transition"
+                className="px-2.5 py-1 rounded-lg bg-slate-700/80 hover:bg-slate-600 text-xs font-medium text-slate-200 transition"
               >
                 {sec}s
               </button>
@@ -297,7 +294,7 @@ export default function TempoChronometer({
             {restSecondsLeft !== null && (
               <button
                 onClick={() => setRestSecondsLeft(null)}
-                className="ml-1 px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 text-xs font-bold"
+                className="ml-1 px-2.5 py-1 rounded-lg bg-slate-600 text-slate-100 text-xs font-semibold"
               >
                 {restSecondsLeft}s
               </button>
@@ -310,15 +307,15 @@ export default function TempoChronometer({
       <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 px-1">
         <div className="flex flex-wrap items-center gap-4">
           <span className="flex items-center gap-1.5">
-            <Flame className="w-3.5 h-3.5 text-emerald-400" />
+            <Flame className="w-3.5 h-3.5 text-slate-400" />
             08:00–09:00 Entreno
           </span>
           <span className="flex items-center gap-1.5">
-            <ShowerHead className="w-3.5 h-3.5 text-sky-400" />
+            <ShowerHead className="w-3.5 h-3.5 text-slate-400" />
             09:00–09:10 Ducha
           </span>
           <span className="flex items-center gap-1.5">
-            <GraduationCap className="w-3.5 h-3.5 text-amber-400" />
+            <GraduationCap className="w-3.5 h-3.5 text-slate-400" />
             09:30 Entrada Uni
           </span>
         </div>
